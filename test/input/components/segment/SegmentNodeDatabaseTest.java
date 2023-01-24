@@ -48,8 +48,14 @@ class SegmentNodeDatabaseTest
 	void testNumUndirectedEdges()
 	{
 		SegmentNodeDatabase db = build();
-		
+		// makes sure the size of the built database is correct
 		assertEquals(10, db.numUndirectedEdges());
+		
+		// makes sure the size doesn't change when adding an existing point
+		PointNode a = new PointNode("A", 3, 6);
+    	PointNode b = new PointNode("B", 2, 4);
+    	db.addUndirectedEdge(a, b);
+    	assertEquals(10, db.numUndirectedEdges());
 	}
 	
 	@Test
@@ -65,10 +71,18 @@ class SegmentNodeDatabaseTest
 		db.addAjacencyList(f, Arrays.asList(a, e, g));
 		
 		assertEquals(13, db.numUndirectedEdges());
+		
+		// makes sure it doesn't re-add a list of existing points
+		db.addAjacencyList(f, Arrays.asList(a, e, g));
+		assertEquals(13, db.numUndirectedEdges());
 	}
 	
 	@Test
 	void testAsSegmentList() {
+		// makes sure there it makes an empty list for an empty db
+		SegmentNodeDatabase empty = new SegmentNodeDatabase();
+		assertEquals(0, empty.asSegmentList().size());
+		
 		// the segment list has each segment twice: forwards and backwards
 		// so the list's size should be double (20) the amount of undirected edges in the map (10)
 		SegmentNodeDatabase db = build();
@@ -78,6 +92,10 @@ class SegmentNodeDatabaseTest
 	
 	@Test
 	void testAsUniqueSegmentList() {
+		// makes sure there it makes an empty list for an empty db
+		SegmentNodeDatabase empty = new SegmentNodeDatabase();
+		assertEquals(0, empty.asUniqueSegmentList().size());
+				
 		// the segment list has each segment once
 		// so the list's size should be the amount of undirected edges in the map (10)
 		SegmentNodeDatabase db = build();
