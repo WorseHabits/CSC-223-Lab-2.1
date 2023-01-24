@@ -22,8 +22,9 @@ public class SegmentNodeDatabase {
 	}
 
 	public SegmentNodeDatabase(Map<PointNode, Set<PointNode>> adjLists) {
-
-		_adjLists = new HashMap<PointNode, Set<PointNode>>(adjLists);
+		
+		if (adjLists == null) _adjLists = new HashMap<PointNode, Set<PointNode>>();
+		else _adjLists = new HashMap<PointNode, Set<PointNode>>(adjLists);
 
 	}
 
