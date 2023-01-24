@@ -47,6 +47,7 @@ public class PointNode
 		return Double.valueOf(_x).hashCode() + Double.valueOf(_y).hashCode();
 	}
 
+	@Override
 	public boolean equals(Object o){
 		
 		

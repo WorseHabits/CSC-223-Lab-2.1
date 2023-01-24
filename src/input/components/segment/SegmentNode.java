@@ -19,7 +19,8 @@ public class SegmentNode
 		_point2 = pt2;
 		
 	}
-
+	
+	@Override
 	public boolean equals(Object o){
 		
 		if(o instanceof SegmentNode && o != null) {
