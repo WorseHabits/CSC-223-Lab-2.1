@@ -65,6 +65,10 @@ class SegmentNodeDatabaseTest
 		db.addAjacencyList(f, Arrays.asList(a, e, g));
 		
 		assertEquals(13, db.numUndirectedEdges());
+		
+		// makes sure it doesn't re-add a list of existing points
+		db.addAjacencyList(f, Arrays.asList(a, e, g));
+		assertEquals(13, db.numUndirectedEdges());
 	}
 	
 	@Test
