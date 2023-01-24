@@ -36,21 +36,23 @@ class SegmentNodeTest {
 		
 		PointNode piNode = new PointNode(Math.PI, Math.PI);
 		
+		PointNode piNodeSqrt = new PointNode(Math.sqrt(Math.PI), Math.sqrt(Math.PI));
+		
+		PointNode piNodeSqrtPlus = new PointNode(Math.sqrt(Math.PI), Math.sqrt(Math.PI) + 0.00000000000001);
+		
 		PointNode root2 = new PointNode(Math.sqrt(2), Math.sqrt(2));
 		
 		SegmentNode piSegment = new SegmentNode(piNode, piNode);
 		
+		SegmentNode piSegmentSqrt = new SegmentNode(piNodeSqrt, piNodeSqrt);
+		
+		SegmentNode root2Segment = new SegmentNode(root2, root2);
+		
 		SegmentNode piRoot2 = new SegmentNode(piNode, root2);
 		
-		assertTrue(new SegmentNode(new PointNode(Math.sqrt(Math.PI) + 0.00000000000000000000000001, 
-				Math.sqrt(Math.PI)), new PointNode(Math.sqrt(Math.PI), Math.sqrt(Math.PI)))
-				.equals(new SegmentNode(new PointNode(Math.sqrt(Math.PI), Math.sqrt(Math.PI)), 
-						new PointNode(Math.sqrt(Math.PI), Math.sqrt(Math.PI)))));
+		assertTrue(piSegment.equals(piSegment));
 		
-		assertTrue(new SegmentNode(new PointNode(Math.sqrt(Math.PI), Math.sqrt(Math.PI)), 
-				new PointNode(Math.sqrt(Math.PI), Math.sqrt(Math.PI)))
-				.equals(new SegmentNode(new PointNode(Math.sqrt(Math.PI), Math.sqrt(Math.PI)), 
-						new PointNode(Math.sqrt(Math.PI), Math.sqrt(Math.PI)))));
+		assertTrue()
 		
 	}
 
