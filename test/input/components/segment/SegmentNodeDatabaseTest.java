@@ -48,8 +48,14 @@ class SegmentNodeDatabaseTest
 	void testNumUndirectedEdges()
 	{
 		SegmentNodeDatabase db = build();
-		
+		// makes sure the size of the built database is correct
 		assertEquals(10, db.numUndirectedEdges());
+		
+		// makes sure the size doesn't change when adding an existing point
+		PointNode a = new PointNode("A", 3, 6);
+    	PointNode b = new PointNode("B", 2, 4);
+    	db.addUndirectedEdge(a, b);
+    	assertEquals(10, db.numUndirectedEdges());
 	}
 	
 	@Test
