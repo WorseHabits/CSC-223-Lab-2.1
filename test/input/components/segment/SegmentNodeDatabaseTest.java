@@ -102,4 +102,15 @@ class SegmentNodeDatabaseTest
 		
 		assertEquals(10, db.asUniqueSegmentList().size());
 	}
+	
+	@Test
+	void testConstructor() {
+		// makes sure it handles passing null into the constructor
+		SegmentNodeDatabase empty = new SegmentNodeDatabase();
+		assertEquals(0, empty.numUndirectedEdges());
+		
+		// makes sure it handles passing null into the constructor
+		SegmentNodeDatabase dbWithNull = new SegmentNodeDatabase(null);
+		assertEquals(0, dbWithNull.numUndirectedEdges());
+	}
 }
