@@ -99,7 +99,7 @@ class PointNodeDatabaseTest {
 	}
 
 	@Test
-	void testGetPointDoubleDouble() {
+	void testGetPointXY() {
 		 _database = new PointNodeDatabase(points);
 	     assertEquals(point1, _database.getPoint(1, 2));
 	     //ensuring the database will return a point with the given parameters
