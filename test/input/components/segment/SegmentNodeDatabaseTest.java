@@ -69,6 +69,10 @@ class SegmentNodeDatabaseTest
 	
 	@Test
 	void testAsSegmentList() {
+		// makes sure there it makes an empty list for an empty db
+		SegmentNodeDatabase empty = new SegmentNodeDatabase();
+		assertEquals(0, empty.asSegmentList().size());
+		
 		// the segment list has each segment twice: forwards and backwards
 		// so the list's size should be double (20) the amount of undirected edges in the map (10)
 		SegmentNodeDatabase db = build();
@@ -78,6 +82,10 @@ class SegmentNodeDatabaseTest
 	
 	@Test
 	void testAsUniqueSegmentList() {
+		// makes sure there it makes an empty list for an empty db
+		SegmentNodeDatabase empty = new SegmentNodeDatabase();
+		assertEquals(0, empty.asUniqueSegmentList().size());
+				
 		// the segment list has each segment once
 		// so the list's size should be the amount of undirected edges in the map (10)
 		SegmentNodeDatabase db = build();
