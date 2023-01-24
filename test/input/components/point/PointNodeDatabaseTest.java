@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 class PointNodeDatabaseTest {
@@ -15,7 +14,7 @@ class PointNodeDatabaseTest {
     private PointNode point2;
     private List<PointNode> points;
 
-    @Before
+
     public void setUp() {
         point1 = new PointNode("A", 1, 2);
         point2 = new PointNode("B", 3, 4);

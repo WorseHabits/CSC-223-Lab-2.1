@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import utilities.math.MathUtilities;
+
+
 public class PointNodeDatabase {
 	Set<PointNode> _points;
 	
@@ -32,8 +35,9 @@ public class PointNodeDatabase {
 	{
 		for (PointNode point:_points)
 		{
+			PointNode point1 = getPoint(x,y);
 			//checking for if the point with the given x and y exists
-			if (point.getX() == x && point.getY() == y) {return true;}
+			if (point1.equals(point)) {return true;}
 		}
 		return false;
 	}
@@ -45,12 +49,9 @@ public class PointNodeDatabase {
 	
 	public String getName(double x, double y)
 	{
-		for (PointNode point:_points)
-		{
-			//checking for if the point with the given x and y exists
-			if (point.getX() == x && point.getY() == y) {return point.getName();}
-		}
-		return null;
+			PointNode point1 = getPoint(x,y);
+			if (point1.equals(null)) {return null;}
+			return point1.getName();
 	}
 	
 	public PointNode getPoint(PointNode point)
@@ -67,7 +68,7 @@ public class PointNodeDatabase {
 		for (PointNode point:_points)
 		{
 			//checking for if the point with the given x and y exists
-			if (point.getX() == x && point.getY() == y) {return point;}
+			if (MathUtilities.doubleEquals(point.getX(), x) && MathUtilities.doubleEquals(point.getY(), y)) {return point;}
 		}
 		return null;
 	}
