@@ -23,16 +23,15 @@ public class SegmentNode
 	@Override
 	public boolean equals(Object o){
 		
-		if(o instanceof SegmentNode && o != null) {
-			
-			SegmentNode segment = (SegmentNode) o;
-			
-			return (_point1.equals(segment._point1) || _point1.equals(segment._point2) 
-					&& _point2.equals(segment._point1) || _point2.equals(segment._point2));	
-			
-		}
+		if(o == null) return false; 
 		
-		return false;
+		if(!(o instanceof SegmentNode)) return false;
+		
+		SegmentNode segment = (SegmentNode) o;
+		
+		return((_point1.equals(segment._point1) || _point1.equals(segment._point2)) 
+				&& _point2.equals(segment._point2));
 		
 	}
+	
 }

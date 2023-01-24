@@ -50,25 +50,16 @@ public class PointNode
 	@Override
 	public boolean equals(Object o){
 		
+		if(o == null)  return false; 
 		
-		if(o instanceof PointNode && o != null) {
-			
-			PointNode node = (PointNode) o;
-			
-			Double thisX = MathUtilities.removeLessEpsilon(_x);
-			
-			Double thatX = MathUtilities.removeLessEpsilon(node._x);
-			
-			Double thisY = MathUtilities.removeLessEpsilon(_y);
-			
-			Double thatY = MathUtilities.removeLessEpsilon(node._y);
-			
-			return MathUtilities.doubleEquals(thisX, thatX) && MathUtilities.doubleEquals(thisY, thatY);
-			
-		}
+		if(!(o instanceof PointNode))  return false; 
 		
-		return false;
 		
+		PointNode node = (PointNode) o;
+		
+		return MathUtilities.doubleEquals(this.getX(), node.getX()) &&
+				MathUtilities.doubleEquals(this.getY(), node.getY());
+			
 	}
 
     @Override
