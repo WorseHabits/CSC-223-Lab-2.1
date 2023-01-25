@@ -65,11 +65,8 @@ public class PointNodeDatabase {
 
 	public PointNode getPoint(double x, double y)
 	{
-		for (PointNode point:_points)
-		{
-			//checking for if the point with the given x and y exists
-			if (MathUtilities.doubleEquals(point.getX(), x) && MathUtilities.doubleEquals(point.getY(), y)) {return point;}
-		}
+		PointNode point1 = new PointNode(x, y);
+		if (_points.contains(point1)) {return point1;}
 		return null;
 	}
 	
