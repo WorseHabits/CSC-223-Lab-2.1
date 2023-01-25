@@ -126,7 +126,8 @@ public class SegmentNodeDatabase {
 //
 //	}
 
-	public void addAjacencyList(PointNode point, List<PointNode> adjList) {
+	public void addAdjacencyList(PointNode point, List<PointNode> adjList) {
+		if (point != null && adjList != null) {
 		// if the map contains point
 		// check to see if point already has each of the adjacencies in the passed-in list
 		// if not, add them
@@ -178,7 +179,7 @@ public class SegmentNodeDatabase {
 			}
 
 		}
-
+		}
 	}
 
 	// creates a list

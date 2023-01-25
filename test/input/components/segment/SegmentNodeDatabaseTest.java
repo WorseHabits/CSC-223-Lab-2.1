@@ -68,12 +68,18 @@ class SegmentNodeDatabaseTest
 		PointNode g = new PointNode("G", 8, 8);
 		PointNode a = new PointNode("A", 3, 6);
 		PointNode e = new PointNode("E", 6, 0);
-		db.addAjacencyList(f, Arrays.asList(a, e, g));
+		db.addAdjacencyList(f, Arrays.asList(a, e, g));
 		
 		assertEquals(13, db.numUndirectedEdges());
 		
 		// makes sure it doesn't re-add a list of existing points
-		db.addAjacencyList(f, Arrays.asList(a, e, g));
+		db.addAdjacencyList(f, Arrays.asList(a, e, g));
+		assertEquals(13, db.numUndirectedEdges());
+		
+		// makes sure it handles null input
+		db.addAdjacencyList(null, null);
+		db.addAdjacencyList(f, null);
+		db.addAdjacencyList(null, null);
 		assertEquals(13, db.numUndirectedEdges());
 	}
 	
