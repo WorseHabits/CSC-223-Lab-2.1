@@ -52,7 +52,7 @@ class SegmentNodeTest {
 		
 		assertTrue(piSegment.equals(piSegment));
 		
-		assertTrue()
+		//assertTrue()
 		
 	}
 

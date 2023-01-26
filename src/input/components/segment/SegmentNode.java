@@ -30,7 +30,7 @@ public class SegmentNode
 		SegmentNode segment = (SegmentNode) o;
 		
 		return((_point1.equals(segment._point1) || _point1.equals(segment._point2)) 
-				&& _point2.equals(segment._point2));
+				&& (_point2.equals(segment._point1) || _point2.equals(segment._point2)));
 		
 	}
 	

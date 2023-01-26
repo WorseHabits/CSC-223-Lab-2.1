@@ -21,6 +21,14 @@ public class PointNodeDatabase {
 	    else {_points = new LinkedHashSet<PointNode>(points);}
 	}
 	
+	/**
+	 * public PointNodeDatabase{this( new ArrayList<PointNode>()); }
+	 * 
+	 * public PointNodeDatabase(List<PointNode> points){
+	 * _points = new LinkedHashSet<PointNode>(points);
+	 * }
+	 */
+	
 	public void put(PointNode point)
 	{
 		_points.add(point);
@@ -44,7 +52,7 @@ public class PointNodeDatabase {
 	
 	public String getName(PointNode point)
 	{
-		return point.getName();
+		return point._name;
 	}
 	
 	public String getName(double x, double y)
