@@ -17,17 +17,14 @@ public class PointNodeDatabase {
 	
 	public PointNodeDatabase(List<PointNode> points) 
 	{
-	    if(points == null) {_points = new LinkedHashSet<PointNode>();} 
-	    else {_points = new LinkedHashSet<PointNode>(points);}
+		if(points == null) {_points = new LinkedHashSet<PointNode>();} 
+        else {_points = new LinkedHashSet<PointNode>(points);}
+		
+        for(PointNode point : points) 
+        {
+        	put(point);
+        }
 	}
-	
-	/**
-	 * public PointNodeDatabase{this( new ArrayList<PointNode>()); }
-	 * 
-	 * public PointNodeDatabase(List<PointNode> points){
-	 * _points = new LinkedHashSet<PointNode>(points);
-	 * }
-	 */
 	
 	public void put(PointNode point)
 	{
@@ -38,41 +35,47 @@ public class PointNodeDatabase {
 	{
 		return _points.contains(point);
 	}
-	
-	public boolean contains(double x, double y)
+	public boolean contains(double x, double y) 
 	{
-		for (PointNode point:_points)
-		{
-			PointNode point1 = getPoint(x,y);
-			//checking for if the point with the given x and y exists
-			if (point1.equals(point)) {return true;}
-		}
-		return false;
+	    PointNode point = getPoint(x, y);
+	    return _points.contains(point);
 	}
+	
 	
 	public String getName(PointNode point)
 	{
-		return point._name;
+		for (PointNode point1:_points)
+		{
+			if(point1.equals(point)) {return point._name;}
+		}
+		return null;
+		
 	}
-	
 	public String getName(double x, double y)
 	{
 		PointNode point1 = getPoint(x,y);
-		if (point1.equals(null)) {return null;}
+		if (point1 == null) {return null;}
 		return point1.getName();
+
 	}
+	
 	
 	public PointNode getPoint(PointNode point)
 	{
 		if(_points.contains(point)) {return point;}
 		else {return null;}
 	}
-
 	public PointNode getPoint(double x, double y)
-	{
-		PointNode point1 = new PointNode(x, y);
-		if (_points.contains(point1)) {return point1;}
-		return null;
-	}
+    {
+        PointNode point1 = new PointNode(x, y);
+        if (_points.contains(point1)) 
+        {
+            for (PointNode point:_points) 
+            {
+                if (point1.equals(point)) {return point;}
+            }
+        }
+        return null;
+    }
 	
 }
