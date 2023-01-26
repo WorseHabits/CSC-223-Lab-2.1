@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import utilities.math.MathUtilities;
-
 
 public class PointNodeDatabase {
 	Set<PointNode> _points;
@@ -55,6 +53,7 @@ public class PointNodeDatabase {
 	{
 		PointNode point1 = getPoint(x,y);
 		if (point1 == null) {return null;}
+
 		return point1.getName();
 
 	}
