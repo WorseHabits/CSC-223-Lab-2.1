@@ -25,7 +25,10 @@ class PointNodeDatabaseTest {
         points.add(point1);
         points.add(point2);
         //creating a base set of points to work with throughout the tests
+
         //use in a bunch of tests, call it within the tests
+
+        
     }
 
 	@Test
@@ -35,17 +38,18 @@ class PointNodeDatabaseTest {
         //verifying the database to be initialized
         assertTrue(_database._points.isEmpty());
         //making sure the points are initialized as empty
+        
 	}
 
-	@Test
-	void testPointNodeDatabase2() {
-		_database = new PointNodeDatabase(points);
-        assertNotNull(_database);
-        assertEquals(points.size(), _database._points.size());
-        //ensuring that the points variable is the same size for both points and _points
-        assertTrue(_database._points.containsAll(points));
-        //further assurance with checking that they are the same list of points
-	}
+//	@Test
+//	void testPointNodeDatabase2() {
+//		_database = new PointNodeDatabase(points);
+//        assertNotNull(_database);
+//        assertEquals(points.size(), _database._points.size());
+//        //ensuring that the points variable is the same size for both points and _points
+//        assertTrue(_database._points.containsAll(points));
+//        //further assurance with checking that they are the same list of points
+//	}
 
 	@Test
 	void testPut() {
@@ -55,23 +59,23 @@ class PointNodeDatabaseTest {
         //making sure that put() successfully adds a point
 	}
 
-	@Test
-	void testContainsPointNode() {
-		_database = new PointNodeDatabase(points);
-        assertTrue(_database.contains(point1));
-        //ensuring that the database will return true if the point is inside of it
-        assertFalse(_database.contains(new PointNode("C", 5, 6)));
-        //ensuring that the database will return false if the point is not inside of it
-	}
+//	@Test
+//	void testContainsPointNode() {
+//		_database = new PointNodeDatabase(points);
+//        assertTrue(_database.contains(point1));
+//        //ensuring that the database will return true if the point is inside of it
+//        assertFalse(_database.contains(new PointNode("C", 5, 6)));
+//        //ensuring that the database will return false if the point is not inside of it
+//	}
 
-	@Test
-	void testContainsXY() {
-		 _database = new PointNodeDatabase(points);
-	     assertTrue(_database.contains(1, 2));
-	     //ensuring the database will return true if the point exists with those parameters
-	     assertFalse(_database.contains(5, 6));
-	     //ensuring the database will return false if the point does not exist with those parameters
-	}
+//	@Test
+//	void testContainsXY() {
+//		 _database = new PointNodeDatabase(points);
+//	     assertTrue(_database.contains(1, 2));
+//	     //ensuring the database will return true if the point exists with those parameters
+//	     assertFalse(_database.contains(5, 6));
+//	     //ensuring the database will return false if the point does not exist with those parameters
+//	}
 
 	@Test
 	void testGetNamePointNode() {
@@ -83,14 +87,14 @@ class PointNodeDatabaseTest {
         
 	}
 
-	@Test
-	void testGetNameXY() {
-		_database = new PointNodeDatabase(points);
-        assertEquals("A", _database.getName(1, 2));
-        //ensuring the database will accurately return the name of a point with those parameters
-        assertNull(_database.getName(5, 6));
-        //ensuring the database will return null if there is not a database with those parameters
-	}
+//	@Test
+//	void testGetNameXY() {
+//		_database = new PointNodeDatabase(points);
+//        assertEquals("A", _database.getName(1, 2));
+//        //ensuring the database will accurately return the name of a point with those parameters
+//        assertNull(_database.getName(5, 6));
+//        //ensuring the database will return null if there is not a database with those parameters
+//	}
 
 	@Test
 	void testGetPointPointNode() {

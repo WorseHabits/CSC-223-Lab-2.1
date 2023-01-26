@@ -21,6 +21,14 @@ public class PointNodeDatabase {
 	    else {_points = new LinkedHashSet<PointNode>(points);}
 	}
 	
+	/**
+	 * public PointNodeDatabase{this( new ArrayList<PointNode>()); }
+	 * 
+	 * public PointNodeDatabase(List<PointNode> points){
+	 * _points = new LinkedHashSet<PointNode>(points);
+	 * }
+	 */
+	
 	public void put(PointNode point)
 	{
 		_points.add(point);
