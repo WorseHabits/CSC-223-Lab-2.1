@@ -58,7 +58,7 @@ public class PointNodeDatabase {
 	public String getName(double x, double y)
 	{
 		PointNode point1 = getPoint(x,y);
-		if (point1.equals(null)) {return null;}
+		if (point1.equals(null)) return null;
 		return point1.getName();
 	}
 	
