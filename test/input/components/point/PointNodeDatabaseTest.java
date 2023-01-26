@@ -13,6 +13,9 @@ class PointNodeDatabaseTest {
     private PointNode point1;
     private PointNode point2;
     private List<PointNode> points;
+    //dont do these instance variables
+    //unique per test - created and destroyed within the test
+    //tests dont run in a given order so make everything independent
 
 
     public void setUp() {
@@ -22,6 +25,7 @@ class PointNodeDatabaseTest {
         points.add(point1);
         points.add(point2);
         //creating a base set of points to work with throughout the tests
+        //use in a bunch of tests, call it within the tests
     }
 
 	@Test

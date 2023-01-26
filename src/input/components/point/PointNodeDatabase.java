@@ -44,23 +44,20 @@ public class PointNodeDatabase {
 	
 	public String getName(PointNode point)
 	{
-		return point.getName();
+		return point._name;
 	}
 	
 	public String getName(double x, double y)
 	{
-			PointNode point1 = getPoint(x,y);
-			if (point1.equals(null)) {return null;}
-			return point1.getName();
+		PointNode point1 = getPoint(x,y);
+		if (point1.equals(null)) {return null;}
+		return point1.getName();
 	}
 	
 	public PointNode getPoint(PointNode point)
 	{
-		for (PointNode point1:_points)
-		{
-			if(point1.equals(point)) {return point1;}
-		}
-		return null;
+		if(_points.contains(point)) {return point;}
+		else {return null;}
 	}
 
 	public PointNode getPoint(double x, double y)
@@ -69,6 +66,5 @@ public class PointNodeDatabase {
 		if (_points.contains(point1)) {return point1;}
 		return null;
 	}
-	
 	
 }
