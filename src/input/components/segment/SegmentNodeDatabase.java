@@ -81,6 +81,12 @@ public class SegmentNodeDatabase {
 
 	}
 	
+	/**
+	 * Adds a directed edge both ways, resulting in an undirected edge
+	 * @param a the starting node of one directed edge and the ending node of another
+	 * @param b the starting node of one directed edge and the ending node of another
+	 */
+	
 	public void addUndirectedEdge(PointNode a, PointNode b) {
 		
 		// call directed edge both ways
@@ -90,6 +96,14 @@ public class SegmentNodeDatabase {
 		this.addDirectedEdge(b, a);
 		
 	}
+	
+	/**
+	 * Allows the creation of a new node with a full adjacency list.
+	 * If the node is already in the database, it adds the nodes from the inputed adjacency list to 
+	 * the already existing adjacency list avoiding duplicates
+	 * @param point the main point that the adjacency list is being made for
+	 * @param adjLists the adjacency list for the main node
+	 */
 	
 	public void addAdjacencyList(PointNode point, List<PointNode>adjLists) {
 		
@@ -105,7 +119,9 @@ public class SegmentNodeDatabase {
 	}
 
 	/**
-	 * Returns a list of unique segments in the graph.
+	 * Returns a list of segments in the graph going both ways.
+	 * It does this by going through the adjacency list for the graph and creating segments from each
+	 * parent PointNode to its children PointNodes and adding them to a list
 	 * @return a list of unique SegmentNodes in the graph.
 	*/
 	public List<SegmentNode> asUniqueSegmentList(){

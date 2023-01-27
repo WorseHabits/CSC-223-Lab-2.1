@@ -1,3 +1,11 @@
+/**
+ * Creates a test for SegmentNode
+ * 
+ * <p>Bugs: none known
+ * 
+ * @author Mason Taylor, Sam Luck-Leonard, and Josh Berger
+ * @date 1/27/2023
+ */
 package input.components.segment;
 
 import static org.junit.jupiter.api.Assertions.*;
