@@ -13,6 +13,13 @@ public class PointNodeDatabase {
 		_points = new LinkedHashSet<PointNode>();
 	}
 	
+	/**
+	 * 
+	 * Constructs a new PointNodeDatabase.
+	 * If the provided list is null or empty, an empty LinkedHashSet is used instead.
+	 * The provided PointNode objects are added to the database via the put method.
+	 * @param points A List of PointNode objects to add to the database
+	 */
 	public PointNodeDatabase(List<PointNode> points) {
 		
 		if(points == null || points.size() == 0) _points = new LinkedHashSet<PointNode>();
@@ -70,7 +77,14 @@ public class PointNodeDatabase {
 
 	}
 	
-	
+	/**
+	 * 
+	 * Returns the PointNode object with the given point or with the given x and y coordinates. 
+	 * @param point The point to be returned if it is within points.
+	 * @param x The x-coordinate of the PointNode to be returned.
+	 * @param y The y-coordinate of the PointNode to be returned.
+	 * @return The PointNode object, or null if no PointNode exists in the list of points.
+	 */
 	public PointNode getPoint(PointNode point){
 		
 		if(_points.contains(point)) return point;
