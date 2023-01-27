@@ -1,3 +1,11 @@
+/**
+* Creates a test for PointNode.
+*
+* <p>Bugs: none known
+*
+* @author Sam Luck-Leonard, Mason Taylor, and Josh Berger
+* @date 1/27/2023
+*/
 package input.components.point;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,3 +1,11 @@
+/**
+* Creates a class for an object PointNode
+*
+* <p>Bugs: none known
+*
+* @author Sam Luck-Leonard, Mason Taylor, and Josh Berger
+* @date 1/27/2023
+*/
 package input.components.point;
 
 import utilities.math.MathUtilities;
@@ -47,6 +55,14 @@ public class PointNode
 		return Double.valueOf(_x).hashCode() + Double.valueOf(_y).hashCode();
 	}
 
+	
+	/**
+	 * 
+	 * Compares PointNode objects for equality.
+	 * Returns true if the given object is also a PointNode and the x and y coordinates are equal.
+	 * @param o the object to be compared for equality with this PointNode
+	 * @return true if the specified object is equal to this PointNode
+	 */
 	@Override
 	public boolean equals(Object o){
 		

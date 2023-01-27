@@ -1,3 +1,11 @@
+/**
+* Creates a database for the SegmentNodes.
+*
+* <p>Bugs: none known
+*
+* @author Sam Luck-Leonard, Mason Taylor, and Josh Berger
+* @date 1/27/2023
+*/
 package input.components.segment;
 
 import java.util.ArrayList;
@@ -43,7 +51,14 @@ public class SegmentNodeDatabase {
 		
 	}
 
-	// idk what the - means in the lab instructions
+	/**
+	 * 
+	 * Adds a directed edge from node 'a' to node 'b' in the adjacency list.
+	 * If the adjacency list does not contain node 'a', it will be added with node 'b' in its adjacency list.
+	 * If node 'b' is not already in node 'a's adjacency list, it will be added.
+	 * @param a the starting node of the directed edge
+	 * @param b the ending node of the directed edge
+	 */
 	private void addDirectedEdge(PointNode a, PointNode b) {
 
 		if(a == null || b == null) return;
@@ -89,7 +104,10 @@ public class SegmentNodeDatabase {
 		}
 	}
 
-	
+	/**
+	 * Returns a list of unique segments in the graph.
+	 * @return a list of unique SegmentNodes in the graph.
+	*/
 	public List<SegmentNode> asUniqueSegmentList(){
 		
 		List<SegmentNode> segments = new ArrayList<SegmentNode>();
@@ -105,9 +123,12 @@ public class SegmentNodeDatabase {
 		
 		return segments;
 	}
-
-	// creates a list
-	// if a segment's reverse is not already in the list, add each segment to  the list
+	/**
+	 * Returns a list of SegmentNodes representing the segments in this graph.
+	 * This method iterates through the adjacency lists of the graph and creates a
+	 * new SegmentNode for each unique pair of points. The segments are then added to a list and returned.
+	 * @return a list of SegmentNodes objects representing the segments in this graph
+	*/
 	public List<SegmentNode> asSegmentList() {
 
 		List<SegmentNode> segments = new ArrayList<SegmentNode>();
