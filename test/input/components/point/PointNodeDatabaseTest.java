@@ -9,6 +9,21 @@ import org.junit.jupiter.api.Test;
 
 class PointNodeDatabaseTest {
 
+	public PointNodeDatabase build() {
+		
+		PointNodeDatabase db = new PointNodeDatabase();
+		
+		PointNode a = new PointNode("A", 1, 2);
+		
+        PointNode b = new PointNode("B", 3, 4);
+        
+        db.put(a);
+        
+        db.put(b);
+        
+        return db;
+        
+	}
     @Test
     void testPointNodeDatabase() {
         PointNodeDatabase _database = new PointNodeDatabase();
@@ -34,9 +49,64 @@ class PointNodeDatabaseTest {
         assertTrue(_database._points.containsAll(points));
         //further assurance with checking that they are the same list of points
     }
-
+    
     @Test
-    void testPut() {
+    void testPutNull() {
+    	
+    	PointNodeDatabase db = build();
+    	
+    	db.put(null);
+    	
+    	assertEquals(2, db.size());
+    	
+    }
+    
+    @Test
+    void testPutAlreadyInThere() {
+    	
+    	PointNodeDatabase db = build();
+    	
+    	PointNode a = new PointNode("A", 1, 2);
+    	
+    	db.put(a);
+    	
+    	assertEquals(2, db.size());
+    	
+    }
+    
+    @Test
+    void testPutStress() {
+    	
+    	PointNodeDatabase db = build();
+    	
+    	PointNode c = new PointNode("C", 4, 4);
+
+		PointNode d = new PointNode("D", 0, 0);
+
+		PointNode e = new PointNode("E", 6, 0);
+
+		PointNode x = new PointNode("X", 3, 3);
+		
+		db.put(c);
+		
+		assertEquals(3, db.size());
+		
+		db.put(d);
+		
+		assertEquals(4, db.size());
+		
+		db.put(e);
+		
+		assertEquals(5, db.size());
+		
+		db.put(x);
+		
+		assertEquals(6, db.size());
+		
+    }
+    
+    @Test
+    void testPutSimple() {
         PointNodeDatabase _database = new PointNodeDatabase();
         PointNode point1 = new PointNode("A", 1, 2);
         _database.put(point1);
@@ -45,7 +115,7 @@ class PointNodeDatabaseTest {
     }
 
     @Test
-    void testContainsPointNode() {
+    void testContainsPointNodeSimple() {
         PointNode point1 = new PointNode("A", 1, 2);
         PointNode point2 = new PointNode("B", 3, 4);
         List<PointNode> points = new ArrayList<PointNode>();
@@ -71,19 +141,21 @@ class PointNodeDatabaseTest {
         assertFalse(_database.contains(5, 6));
         //ensuring the database will return false if the point does not exist with those parameters
       }
+    
     @Test
     void testGetPointNode() {
-        PointNode point1 = new PointNode("A", 1, 2);
+        PointNode point1 = new PointNode("A", Math.sqrt(2), 2);
         PointNode point2 = new PointNode("B", 3, 4);
         List<PointNode> points = new ArrayList<PointNode>();
         points.add(point1);
         points.add(point2);
         PointNodeDatabase _database = new PointNodeDatabase(points);
-        assertEquals(point1, _database.getPoint(1, 2));
+        assertEquals(point1, _database.getPoint(Math.sqrt(2), 2));
         //ensuring that the correct point is returned when searching by x and y coordinates
         assertNull(_database.getPoint(5, 6));
         //ensuring that a null value is returned if the point does not exist in the database
     }
+    
     @Test
     void testGetNamePointNode() {
         PointNode point1 = new PointNode("A", 1, 2);
@@ -100,13 +172,13 @@ class PointNodeDatabaseTest {
 
     @Test
     void testGetNameXY() {
-        PointNode point1 = new PointNode("A", 1, 2);
+        PointNode point1 = new PointNode("A", Math.sqrt(2), 2);
         PointNode point2 = new PointNode("B", 3, 4);
         List<PointNode> points = new ArrayList<PointNode>();
         points.add(point1);
         points.add(point2);
         PointNodeDatabase _database = new PointNodeDatabase(points);
-        assertEquals("A", _database.getName(1, 2));
+        assertEquals("A", _database.getName(Math.sqrt(2), 2));
         //verifying that the correct name is returned
         assertNotEquals("B", _database.getName(1, 2));
         //verifying that the incorrect name is not returned
@@ -114,13 +186,13 @@ class PointNodeDatabaseTest {
 
     @Test
     void testGetPointXY() {
-        PointNode point1 = new PointNode("A", 1, 2);
+        PointNode point1 = new PointNode("A", Math.sqrt(2), 2);
         PointNode point2 = new PointNode("B", 3, 4);
         List<PointNode> points = new ArrayList<PointNode>();
         points.add(point1);
         points.add(point2);
         PointNodeDatabase _database = new PointNodeDatabase(points);
-        assertEquals(point1, _database.getPoint(1, 2));
+        assertEquals(point1, _database.getPoint(Math.sqrt(2), 2));
         //verifying that the correct point is returned
         assertNotEquals(point2, _database.getPoint(1, 2));
         //verifying that the incorrect point is not returned
