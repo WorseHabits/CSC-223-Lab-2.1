@@ -46,6 +46,8 @@ public class SegmentNodeDatabase {
 	// idk what the - means in the lab instructions
 	private void addDirectedEdge(PointNode a, PointNode b) {
 
+		if(a == null || b == null) return;
+		
 		// if the map doesn't contain point a add it with b in its adjacency list
 
 		if(!_adjLists.containsKey(a)) {
@@ -76,9 +78,7 @@ public class SegmentNodeDatabase {
 	
 	public void addAdjacencyList(PointNode point, List<PointNode>adjLists) {
 		
-		if(point == null) return;
-		
-		if(adjLists == null) return;
+		if(point == null || adjLists == null) return;
 		
 		if(adjLists.size()== 0) return;
 		
@@ -89,19 +89,41 @@ public class SegmentNodeDatabase {
 		}
 	}
 
+	
+	public List<SegmentNode> asUniqueSegmentList(){
+		
+		List<SegmentNode> segments = new ArrayList<SegmentNode>();
+		
+		for(Entry<PointNode, Set<PointNode>> entry : _adjLists.entrySet()) {
+			
+			for(PointNode node : entry.getValue()) {
+				
+				segments.add(new SegmentNode(entry.getKey(), node));
+			}
+			
+		}
+		
+		return segments;
+	}
+
 	// creates a list
-	// adds each segment as the pair of each PointNode and each PointNode in its adjacency list
-	// that means it would be a list of double the segments because each segment is repeated forwards and backwards
-	// ie has Segment from A to B as both A to B and B to A
+	// if a segment's reverse is not already in the list, add each segment to  the list
 	public List<SegmentNode> asSegmentList() {
 
 		List<SegmentNode> segments = new ArrayList<SegmentNode>();
+		List<PointNode> keys = new ArrayList<PointNode>();
 
 		for (Entry<PointNode, Set<PointNode>> entry : _adjLists.entrySet()) { 
 
+			keys.add(entry.getKey());
+
 			for (PointNode p : entry.getValue()) {
 
-				segments.add(new SegmentNode(entry.getKey(),p));
+				if (!keys.contains(p)) {
+
+					segments.add(new SegmentNode(entry.getKey(),p));
+
+				}
 
 			}
 
@@ -110,37 +132,5 @@ public class SegmentNodeDatabase {
 		return segments;
 
 	}
-	
-	public List<SegmentNode> asUniqueSegmentList(){
-		
-		List<SegmentNode> segments = new ArrayList<SegmentNode>();
-	}
-
-	// creates a list
-	// if a segment's reverse is not already in the list, add each segment to  the list
-//	public List<SegmentNode> asUniqueSegmentList() {
-//
-//		List<SegmentNode> segments = new ArrayList<SegmentNode>();
-//		List<PointNode> keys = new ArrayList<PointNode>();
-//
-//		for (Entry<PointNode, Set<PointNode>> entry : _adjLists.entrySet()) { 
-//
-//			keys.add(entry.getKey());
-//
-//			for (PointNode p : entry.getValue()) {
-//
-//				if (!keys.contains(p)) {
-//
-//					segments.add(new SegmentNode(entry.getKey(),p));
-//
-//				}
-//
-//			}
-//
-//		}
-//
-//		return segments;
-//
-//	}
 
 }

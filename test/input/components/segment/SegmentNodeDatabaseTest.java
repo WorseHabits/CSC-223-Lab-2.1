@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -120,133 +121,240 @@ class SegmentNodeDatabaseTest
 		assertEquals(10, db.numUndirectedEdges());
 
 	}
-	
+
 	@Test
 	void testAddAdjacencyListNullPoint() {
-		
+
 		SegmentNodeDatabase db = build();
-		
+
 		PointNode g = new PointNode("A", 12, 6);
 
 		db.addAdjacencyList(null, new ArrayList<PointNode>(Arrays.asList(g)));
 
 		assertEquals(10, db.numUndirectedEdges());
-		
+
 	}
-	
+
 	@Test
 	void testAddAdjacencyListSimple() {
-		
+
 		SegmentNodeDatabase db = build();
-		
+
 		PointNode a = new PointNode("A", 3, 6);
-		
+
 		PointNode g = new PointNode("G", 12, 6);
-		
+
 		db.addAdjacencyList(a, new ArrayList<PointNode>(Arrays.asList(g)));
-		
+
 		assertEquals(11, db.numUndirectedEdges());
-		
+
 	}
-	
+
 	@Test
 	void testAdjacencyListAddingAdjacenciesAlreadyThere() {
-		
+
 		SegmentNodeDatabase db = build();
-		
+
 		PointNode a = new PointNode("A", 3, 6);
-		
+
 		PointNode b = new PointNode("B", 2, 4);
-		
+
 		PointNode c = new PointNode("C", 4, 4);
-		
+
 		db.addAdjacencyList(c, new ArrayList<PointNode>(Arrays.asList(b, a)));
-		
-		
+
+
 	}
-	
+
 	@Test
 	void testAddAdjacencyListStress() {
-		
+
 		SegmentNodeDatabase db = build();
-		
+
 		PointNode a = new PointNode("A", 3, 6);
-		
+
 		PointNode b = new PointNode("B", 2, 4);
-		
+
 		PointNode c = new PointNode("C", 4, 4);
 
 		PointNode d = new PointNode("D", 0, 0);
 
 		PointNode x = new PointNode("X", 3, 3);
-		
+
 		PointNode a1 = new PointNode("A1", 12, 6);
-		
+
 		PointNode b1 = new PointNode("B1", 13, 52);
-		
+
 		PointNode c1 = new PointNode("C1", 16, 365);
-		
+
 		PointNode d1 = new PointNode("D1", 767, 666);
-		
+
 		PointNode e1 = new PointNode("E1", 30, 177777);
-		
+
 		PointNode x1 = new PointNode("X1", 76, 12);
-		
+
 		db.addAdjacencyList(a, new ArrayList<PointNode>(Arrays.asList(a1, b1, c1, d1, e1, x1)));
-		
+
 		assertEquals(16, db.numUndirectedEdges());
-		
+
 		db.addAdjacencyList(b, new ArrayList<PointNode>(Arrays.asList(a1, b1, c1, d1, e1, x1)));
-		
+
 		assertEquals(22, db.numUndirectedEdges());
-		
+
 		db.addAdjacencyList(c, new ArrayList<PointNode>(Arrays.asList(a1, b1, c1)));
-		
+
 		assertEquals(25, db.numUndirectedEdges());
-		
+
 		db.addAdjacencyList(d, new ArrayList<PointNode>(Arrays.asList(x)));
-		
+
 		assertEquals(25, db.numUndirectedEdges());
-		
+
 		db.addAdjacencyList(x, new ArrayList<PointNode>(Arrays.asList(a1, b1, c1, d1, e1, x1)));
-		
+
 		assertEquals(31, db.numUndirectedEdges());
-		
+
 	}
 
 	@Test
-	void testAsSegmentList() {
-
-		// makes sure there it makes an empty list for an empty db
-
-		SegmentNodeDatabase empty = new SegmentNodeDatabase();
-
-		assertEquals(0, empty.asSegmentList().size());
-
-		// the segment list has each segment twice: forwards and backwards
-		// so the list's size should be double (20) the amount of undirected edges in the map (10)
-
-		SegmentNodeDatabase db = build();
-
-		assertEquals(20, db.asSegmentList().size());
-	}
-
-	@Test
-	void testAsUniqueSegmentList() {
-
-		// makes sure there it makes an empty list for an empty db
+	void testAsUniqueSegmentListEmpty() {
 
 		SegmentNodeDatabase empty = new SegmentNodeDatabase();
 
 		assertEquals(0, empty.asUniqueSegmentList().size());
 
-		// the segment list has each segment once
-		// so the list's size should be the amount of undirected edges in the map (10)
+	}
+
+	@Test
+	void testAsUniqueSegmentListSimple() {
 
 		SegmentNodeDatabase db = build();
 
-		assertEquals(10, db.asUniqueSegmentList().size());
+		assertEquals(20, db.asUniqueSegmentList().size());
 
+		PointNode a = new PointNode("A", 3, 6);
+
+		PointNode g = new PointNode("G", 12, 6);
+
+		db.addAdjacencyList(a, new ArrayList<PointNode>(Arrays.asList(g)));
+
+		assertEquals(22, db.asUniqueSegmentList().size());
+
+	}
+
+	@Test
+	void testAsUniqueSegmentListStress() {
+
+		SegmentNodeDatabase db = build();
+
+		PointNode a = new PointNode("A", 3, 6);
+
+		PointNode b = new PointNode("B", 2, 4);
+
+		PointNode c = new PointNode("C", 4, 4);
+
+		PointNode d = new PointNode("D", 0, 0);
+
+		PointNode x = new PointNode("X", 3, 3);
+
+		PointNode a1 = new PointNode("A1", 12, 6);
+
+		PointNode b1 = new PointNode("B1", 13, 52);
+
+		PointNode c1 = new PointNode("C1", 16, 365);
+
+		PointNode d1 = new PointNode("D1", 767, 666);
+
+		PointNode e1 = new PointNode("E1", 30, 177777);
+
+		PointNode x1 = new PointNode("X1", 76, 12);
+
+		db.addAdjacencyList(a, new ArrayList<PointNode>(Arrays.asList(a1, b1, c1, d1, e1, x1)));
+
+		assertEquals(32, db.asUniqueSegmentList().size());
+
+		db.addAdjacencyList(b, new ArrayList<PointNode>(Arrays.asList(a1, b1, c1, d1, e1, x1)));
+
+		assertEquals(44, db.asUniqueSegmentList().size());
+
+		db.addAdjacencyList(c, new ArrayList<PointNode>(Arrays.asList(a1, b1, c1)));
+
+		assertEquals(50, db.asUniqueSegmentList().size());
+
+		db.addAdjacencyList(d, new ArrayList<PointNode>(Arrays.asList(x)));
+
+		assertEquals(50, db.asUniqueSegmentList().size());
+
+		db.addAdjacencyList(x, new ArrayList<PointNode>(Arrays.asList(a1, b1, c1, d1, e1, x1)));
+
+		assertEquals(62, db.asUniqueSegmentList().size());
+
+	}
+	
+	@Test
+	void testAsSegmentListEmpty() {
+		
+		SegmentNodeDatabase empty = new SegmentNodeDatabase();
+		
+		assertEquals(0, empty.asSegmentList().size());
+		
+	}
+	
+	@Test
+	void testAsSegmentListSimple() {
+		
+		SegmentNodeDatabase db = build();
+		
+		assertEquals(10, db.asSegmentList().size());
+		
+	}
+	
+	@Test
+	void testAsSegmentListStress() {
+		
+		SegmentNodeDatabase db = build();
+
+		PointNode a = new PointNode("A", 3, 6);
+
+		PointNode b = new PointNode("B", 2, 4);
+
+		PointNode c = new PointNode("C", 4, 4);
+
+		PointNode d = new PointNode("D", 0, 0);
+
+		PointNode x = new PointNode("X", 3, 3);
+
+		PointNode a1 = new PointNode("A1", 12, 6);
+
+		PointNode b1 = new PointNode("B1", 13, 52);
+
+		PointNode c1 = new PointNode("C1", 16, 365);
+
+		PointNode d1 = new PointNode("D1", 767, 666);
+
+		PointNode e1 = new PointNode("E1", 30, 177777);
+
+		PointNode x1 = new PointNode("X1", 76, 12);
+
+		db.addAdjacencyList(a, new ArrayList<PointNode>(Arrays.asList(a1, b1, c1, d1, e1, x1)));
+
+		assertEquals(16, db.asSegmentList().size());
+
+		db.addAdjacencyList(b, new ArrayList<PointNode>(Arrays.asList(a1, b1, c1, d1, e1, x1)));
+
+		assertEquals(22, db.asSegmentList().size());
+
+		db.addAdjacencyList(c, new ArrayList<PointNode>(Arrays.asList(a1, b1, c1)));
+
+		assertEquals(25, db.asSegmentList().size());
+
+		db.addAdjacencyList(d, new ArrayList<PointNode>(Arrays.asList(x)));
+
+		assertEquals(25, db.asSegmentList().size());
+
+		db.addAdjacencyList(x, new ArrayList<PointNode>(Arrays.asList(a1, b1, c1, d1, e1, x1)));
+
+		assertEquals(31, db.asSegmentList().size());
+		
 	}
 
 	@Test
