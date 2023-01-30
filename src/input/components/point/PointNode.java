@@ -40,7 +40,7 @@ public class PointNode
 	 * @param y -- The Y coordinate
 	 */
 	public PointNode(String name, double x, double y){
-		
+		//make name to anonymous if empty or null
 		_name = name;
 		
 		_x = x;

@@ -108,7 +108,7 @@ public class SegmentNodeDatabase {
 	public void addAdjacencyList(PointNode point, List<PointNode>adjLists) {
 		
 		if(point == null || adjLists == null) return;
-		
+		//isEmpty instead of size == 0
 		if(adjLists.size()== 0) return;
 		
 		for(PointNode node : adjLists) {
@@ -146,7 +146,7 @@ public class SegmentNodeDatabase {
 	 * @return a list of SegmentNodes objects representing the segments in this graph
 	*/
 	public List<SegmentNode> asSegmentList() {
-
+		//could be a set so you dont have to check containment
 		List<SegmentNode> segments = new ArrayList<SegmentNode>();
 		List<PointNode> keys = new ArrayList<PointNode>();
 

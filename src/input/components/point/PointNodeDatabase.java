@@ -56,7 +56,7 @@ public class PointNodeDatabase {
 		
 	}
 	public boolean contains(double x, double y) {
-		
+		//if null return false
 	    PointNode point = getPoint(x, y);
 	    
 	    return _points.contains(point);
@@ -96,7 +96,7 @@ public class PointNodeDatabase {
 	public PointNode getPoint(PointNode point){
 		
 		if(_points.contains(point)) return point;
-		
+		//use the below implementation this should do the work
 		else return null;
 		
 	}
@@ -104,7 +104,7 @@ public class PointNodeDatabase {
 		
         PointNode point1 = new PointNode(x, y);
         
-        if (_points.contains(point1)) {
+        if (_points.contains(point1)) { //return false then do the loop
         	
             for (PointNode point:_points) {
             	
